@@ -11,7 +11,7 @@ app.use(express.static('public'));
 
 async function getDetails(isbn){
 
-}
+};
 
 app.get('/', (req,res) => {
     res.render('index.ejs')

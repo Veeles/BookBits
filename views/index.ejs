@@ -1,4 +1,35 @@
 <%- include('partials/header.ejs'); -%>
+<div class="search">
+    <div class="search-title">
+        <h2>Explore, Study, Review</h2>
+    </div>
+    <div class="search-input">
+        <form action="/search" method="get">
+            <label for="search-site"></label>
+            <input type="search" id="search-site" name="search site" ></input>
+        </form>
+    </div>
+</div>
+<div>
+    <div class="books">
+        <div class="books-label">
+            <h2>Literature Notes</h2>
+        </div>
 
-<h1>Welcome</h1>
+        <div class="books-show">
+            <div class="book">
+                <div class="book-photo">
+                    <img src="https://covers.openlibrary.org/b/id/12547191-M.jpg">
+                    <p>Author</p>
+                    <p>Title</p>
+                </div>
+                <!-- <div class="book-title">
+                    <p>Author</p>
+                    <p>Title</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
 <%- include('partials/footer.ejs'); -%>

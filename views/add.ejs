@@ -1,26 +1,80 @@
 <%- include('partials/header.ejs') -%>
 
-<div class="form">
-    <div class="add-form">
-        <div class="add-form__label">
-            <h2>Add New Book</h2>
-        </div>
-        <div class="add-form__isbn">
-            <label for="isbn">ISBN</label>
-            <input type="text" id="isbn" name="isbn-code" placeholder="ISBN...">
-        </div>
-        <div class="add-form__author">
-            <label for="author">Author</label>
-            <input type="text" id="author" name="book-author" placeholder="Author...">
-        </div>
-        <div class="add-form__title">
-            <label for="title">Title</label>
-            <input id="title" name="book-title" placeholder="Title...">
-        </div>
-        <div class="add-form__submit">
-            <input type="submit" value="Add New Book">
+<form action="/add" method="post" id="form-add">
+    <div class="form">
+        <div class="add-form">
+            <div class="add-form__label">
+                <h2>Add New Book</h2>
+            </div>
+            <div class="add-form__isbn">
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" name="isbn-code" placeholder="ISBN..." required>
+            </div>
+            <div class="add-form__author">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="book-author" placeholder="Author..." required>
+            </div>
+            <div class="add-form__title">
+                <label for="title">Title</label>
+                <input id="title" name="book-title" placeholder="Title..." required>
+            </div>
+            <div class="add-form__submit">
+                <input type="submit" value="Add New Book">
+            </div>
         </div>
     </div>
-</div>
+</form>
 
+<script>
+    async function fetchResponse(event){
+        event.preventDefault(); 
+
+        if (document.getElementById('form-add').checkValidity()){
+            if (document.querySelector('.add-form__success')){
+                document.querySelector('.add-form__success').remove()
+            }
+            if (document.querySelector('.add-form__failed')){
+                document.querySelector('.add-form__failed').remove()
+            }
+            const data = {
+                isbn: document.getElementById('isbn').value,
+                author: document.getElementById('author').value,
+                title: document.getElementById('title').value
+            }
+            try {
+                const response = await fetch('/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const books = await response.json();
+                console.log(books.success);
+                if(books.success == true){
+                    const successDiv = document.createElement('div');
+                    const successLabel = document.createElement('h3');
+                    successLabel.innerText = 'The book has been added to the database';
+                    successDiv.classList.add('add-form__success');
+                    successDiv.appendChild(successLabel);
+                    document.querySelector('.add-form').appendChild(successDiv);
+
+                } else{
+                    const successDiv = document.createElement('div');
+                    const successLabel = document.createElement('h3');
+                    successLabel.innerText = 'The book has not been added to the database';
+                    successDiv.classList.add('add-form__failed');
+                    successDiv.appendChild(successLabel);
+                    document.querySelector('.add-form').appendChild(successDiv);
+                }
+            } catch (err){
+                console.log(err);
+            };
+        } else {
+            document.getElementById('form-add').reportValidity();
+        }
+    };
+    const submit = document.querySelector('input[type="submit"]');
+    submit.addEventListener('click', fetchResponse);
+</script>
 <%- include('partials/footer.ejs') -%>

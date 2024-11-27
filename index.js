@@ -33,7 +33,6 @@ async function getBooks(){
 
 app.get('/', async (req,res) => {
     const books = await getBooks();
-    console.log(books)
     res.render('index.ejs', {books: books})
 });
 

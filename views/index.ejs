@@ -18,11 +18,15 @@
 
         <div class="books-show">
             <div class="book">
+                <% books.forEach(book => { %>
+                    
+                
                 <div class="book-photo">
-                    <img src="https://covers.openlibrary.org/b/id/12547191-M.jpg">
-                    <p>Author</p>
-                    <p>Title</p>
+                    <img src="<%= book.image %>">
+                    <p><%= book.author %></p>
+                    <p><%= book.title %></p>
                 </div>
+                <% }); %>
             </div>
         </div>
     </div>

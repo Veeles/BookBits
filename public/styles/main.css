@@ -140,6 +140,11 @@ footer {
     border-radius: 10px;
 }
 
+#add-book__button:hover {
+    background-color: #22101d;
+    cursor: pointer;
+}
+
 .form {
     display: flex;
     justify-content: center;
@@ -230,6 +235,7 @@ footer {
 
 .add-form__submit input:hover{
     background-color: #0f0f11;
+    cursor: pointer;
 }
 
 .add-form__success {
@@ -252,4 +258,8 @@ footer {
     font-size: 0.8rem;
     border-radius: 5px;
     color: red;
+}
+
+a {
+    text-decoration: none;
 }

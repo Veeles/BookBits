@@ -13,20 +13,28 @@ const user = new pg.Client({
     port: process.env.DB_PORT,
 });
 user.connect()
-let isbn;
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(express.json());
 
-async function getDetails(isbn){
+async function getBooks(){
+    let books = [];
+    const result = await user.query('SELECT * FROM book LIMIT 8');
+    result.rows.forEach((book) => {
+        books.push(book);
+    });
+    return books
 
 };
 
 
 
-app.get('/', (req,res) => {
-    res.render('index.ejs')
+app.get('/', async (req,res) => {
+    const books = await getBooks();
+    console.log(books)
+    res.render('index.ejs', {books: books})
 });
 
 app.get('/add', (req,res) => {

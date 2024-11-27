@@ -27,5 +27,15 @@
         </div>
     </div>
 </div>
-
+<div class="add-book">
+    <div class="add-book__button">
+        <button id="add-book__button">Add New Book</button>
+    </div>
+</div>
+<script>
+    const addButton = document.getElementById('add-book__button');
+    addButton.onclick = () => {
+        location.href = 'add';
+    };
+</script>
 <%- include('partials/footer.ejs'); -%>

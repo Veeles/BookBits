@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -45,7 +45,7 @@ nav {
     font-weight: 800;
 }
 
-footer{
+footer {
     display: flex;
     justify-content: center;
     background-color: #1A1A1D;
@@ -55,28 +55,28 @@ footer{
     align-items: center;
 }
 
-.search{
+.search {
     padding: 2rem 0rem;
     background-color: #3B1C32;
 }
 
-.search-title{
+.search-title {
     display: flex;
     justify-content: center;
     margin: 2rem 0rem;
 }
 
-.search-title h2{
+.search-title h2 { 
     color: white;
     font-size: 2rem;
 }
 
-.search-input{
+.search-input {
     display: flex;
     justify-content: center;
 }
 
-.search-input input{
+.search-input input {
     padding: 12px 10px;
     width: 600px;
     border-radius: 12px;
@@ -85,31 +85,31 @@ footer{
     font-weight: bold;
 }
 
-.books-label{
+.books-label {
     display: flex;
     justify-content: center;
     padding: 3rem 0rem;
 }
 
-.books-label h2{
+.books-label h2 {
     font-size: 2rem;
     color: #1A1A1D;
     font-weight: bolder;
 }
 
-.books-show{
+.books-show {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.book-photo img{
+.book-photo img {
     height: 250px;
     width: 200px;
 
 }
 
-.book-photo{
+.book-photo {
     height: 300px;
     width: 200px;
     box-shadow: 0px 1px 6px 1px black;
@@ -118,9 +118,116 @@ footer{
 
 }
 
-.book{
+.book {
     display: flex;
     flex-direction: column;
 
 }
 
+.add-book {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0rem;
+}
+
+#add-book__button {
+    padding: 1rem 0.4rem;
+    font-size: 1.5rem;
+    color: white;
+    background-color: #3B1C32;
+    font-weight: bolder;
+    border: #1A1A1D;
+    border-radius: 10px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+.add-form {
+    margin: 5em 0em;
+    background-color: #3B1C32;
+    width: 70%;
+    height: 600px;
+    box-shadow: 0px 1px 6px 1px black;
+
+}
+
+.add-form__label h2 {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    margin: 1em 0em;
+}
+
+.add-form__isbn { 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* .add-form__isbn label{
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.add-form__isbn input{
+    width: 40%;
+    padding: 1rem 0.4rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+} */
+
+.add-form label {
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.add-form input {
+    width: 40%;
+    padding: 1rem 0.4rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.add-form__author {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.add-form__title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.add-form__submit {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.add-form__submit input {
+    margin: 2rem 0rem;
+    width: 14%;
+    background-color: #1A1A1D;
+    color: #6A1E55;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.add-form__submit input:hover{
+    background-color: #0f0f11;
+}

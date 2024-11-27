@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs') -%>
+
+<div class="form">
+    <div class="add-form">
+        <div class="add-form__label">
+            <h2>Add New Book</h2>
+        </div>
+        <div class="add-form__isbn">
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn-code" placeholder="ISBN...">
+        </div>
+        <div class="add-form__author">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="book-author" placeholder="Author...">
+        </div>
+        <div class="add-form__title">
+            <label for="title">Title</label>
+            <input id="title" name="book-title" placeholder="Title...">
+        </div>
+        <div class="add-form__submit">
+            <input type="submit" value="Add New Book">
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') -%>

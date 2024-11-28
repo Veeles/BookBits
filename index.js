@@ -58,6 +58,11 @@ async function getPagBooks(page, limit) {
     return books
 }
 
+async function getBookDetailsById(id) {
+    const result = await user.query('SELECT * FROM book WHERE id = $1', [id])
+    return result.rows
+}
+
 function getTitles(books){
     let titles = [];
     books.forEach((book) => {
@@ -134,6 +139,17 @@ app.get('/books/:page', async (req,res) => {
         res.redirect('/')
     }
   
+});
+
+app.get('/book/:id', async (req,res) => {
+    try{
+        const id = req.params.id;
+        const book = await getBookDetailsById(id)
+        console.log(book)
+        res.render('book.ejs', {book:book});
+    } catch (err){
+        console.log(err);
+    };
 });
 
 app.listen(port, () => {

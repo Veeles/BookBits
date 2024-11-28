@@ -58,9 +58,18 @@ async function getPagBooks(page, limit) {
     return books
 }
 
+function getTitles(books){
+    let titles = [];
+    books.forEach((book) => {
+        titles.push(book.title);
+    });
+    return titles
+};
+
 app.get('/', async (req,res) => {
     const books = await getFirstsBooks();
-    res.render('index.ejs', {books: books})
+    const titles = getTitles(books);
+    res.render('index.ejs', {books: books, titles:titles})
 });
 
 app.get('/add', (req,res) => {
@@ -119,7 +128,6 @@ app.get('/books/:page', async (req,res) => {
         const books = await getPagBooks(page, limit);
         const length = await getLength()
         const topPage = Math.floor(length / limit)
-        console.log(topPage)
         res.render('books.ejs', {books:books, currentPage: page, topPage:topPage})
     } catch (err) {
         console.log(err)

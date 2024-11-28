@@ -107,6 +107,27 @@ footer {
     margin-left: -35px;
 }
 
+.search-autocomplete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-autocomplete__ul {
+    background-color: white;
+    width: 580px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.search-autocomplete li {
+    list-style-type: none;
+}
+
+.search-autocomplete li:hover {
+    background-color: aliceblue;
+}
+
 .books-label {
     display: flex;
     justify-content: center;

@@ -6,7 +6,7 @@
     <div class="search-input">
         <form action="/search" method="get">
             <label for="search-site"></label>
-            <input type="search" id="search-site" name="search site">
+            <input type="search" id="search-site" name="search site" autocomplete="off">
             <button>  
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-form__svg" style=" height: 25px" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -15,6 +15,20 @@
    
                       
         </form>
+        
+    </div>
+    <div class="search-autocomplete">
+        <!-- <div class="search-autocomplete__ul">
+            <ul>
+                <li>one</li>
+                <li>one</li>
+                <li>one</li>
+                <li>one</li>
+                <li>one</li>
+                <li>one</li>
+                <li>one</li>
+            </ul>
+        </div> -->
     </div>
 </div>
 <div>
@@ -36,6 +50,7 @@
                 <% }); %>
             </div>
         </div>
+       
     </div>
 </div>
 <div class="add-book">
@@ -48,6 +63,52 @@
     addButton.onclick = () => {
         location.href = 'add';
     };
+
+ 
+
+    const titles = '<%= titles %>'.split(',');
+    const searchInput = document.getElementById('search-site');
+    const searchResultParent = document.querySelector('.search-autocomplete');
+
+    function showTitles(titles){
+        console.log('start')
+        const displayDiv = document.createElement('div');
+        displayDiv.classList.add('search-autocomplete__ul');
+        searchResultParent.appendChild(displayDiv);
+
+        const displayUl = document.createElement('ul');
+        displayDiv.appendChild(displayUl);
+        titles.forEach((title) => {
+            const liElement = document.createElement('li');
+            liElement.textContent = title
+            displayUl.appendChild(liElement);
+        });
+    };
+
+    function clearTitles(){
+        if(document.querySelector('.search-autocomplete__ul')){
+            document.querySelector('.search-autocomplete__ul').remove()
+        }
+    }
+    searchInput.onkeyup = () => {
+        clearTitles()
+        let value = searchInput.value
+        let result = titles.filter((title) => {
+            return title.toLowerCase().includes(value.toLowerCase());
+        });
+        if(result.length > 0){
+            showTitles(result);
+        }
+        let liElements = document.querySelectorAll('.search-autocomplete__ul li');
+        liElements.forEach((li) => {
+        li.addEventListener('click', () => {
+           searchInput.value = li.textContent;
+        });
+    });
+    };
+    
+   
+    
     
 </script>
 <%- include('partials/footer.ejs'); -%>

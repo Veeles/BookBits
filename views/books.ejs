@@ -18,5 +18,33 @@
         </div>
     </div>
 </div>
+<div class="change-page">
+    <div class="change-page__button">
+        <div class="change-page__button-previous">
+            <button>
+               <a href="<%= currentPage - 1 %>">Previous</a>
+            </button>
+        </div>
+        <div class="change-page__button-next">
+            <button>
+                <a href="<%= currentPage + 1%>">Next</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const topPage = <%= topPage %>;
+    const currentPage = <%= currentPage %>
+    const previosButton = document.querySelector('.change-page__button-previous button');
+    console.log(previosButton)
+    const nextButton = document.querySelector('.change-page__button-next button');
+    if (currentPage == 1 || currentPage < 0){
+        previosButton.style.visibility = 'hidden';
+    };
+    if (currentPage == topPage || currentPage > topPage){
+        nextButton.style.visibility = 'hidden';
+    };
+</script>
 
 <%- include('partials/footer') -%>

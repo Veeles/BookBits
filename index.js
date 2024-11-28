@@ -19,6 +19,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(express.json());
 
+async function getLength() {
+    let length = 0
+    const books = await user.query('SELECT * FROM book');
+    length = books.rowCount
+    return length
+}
+
 async function getFirstsBooks(){
     let books = [];
     const result = await user.query('SELECT * FROM book LIMIT 8');
@@ -106,13 +113,20 @@ app.get('/about', (req,res) => {
 });
 
 app.get('/books/:page', async (req,res) => {
-    console.log(req.params.page)
-    const page = req.params.page
-    const limit = 4
-    const books = await getPagBooks(page, limit);
-    console.log(books);
-    res.render('books.ejs', {books:books})
-})
+    try {
+        const page = Number(req.params.page);
+        const limit = 4;
+        const books = await getPagBooks(page, limit);
+        const length = await getLength()
+        const topPage = Math.floor(length / limit)
+        console.log(topPage)
+        res.render('books.ejs', {books:books, currentPage: page, topPage:topPage})
+    } catch (err) {
+        console.log(err)
+        res.redirect('/')
+    }
+  
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)

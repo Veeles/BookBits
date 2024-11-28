@@ -22,12 +22,12 @@
     <div class="change-page__button">
         <div class="change-page__button-previous">
             <button>
-               <a href="<%= currentPage - 1 %>">Previous</a>
+               <p>Previous</p>
             </button>
         </div>
         <div class="change-page__button-next">
             <button>
-                <a href="<%= currentPage + 1%>">Next</a>
+                <p>Next</p>
             </button>
         </div>
     </div>
@@ -37,8 +37,15 @@
     const topPage = <%= topPage %>;
     const currentPage = <%= currentPage %>
     const previosButton = document.querySelector('.change-page__button-previous button');
-    console.log(previosButton)
     const nextButton = document.querySelector('.change-page__button-next button');
+    previosButton.onclick= () => {
+        location.href = currentPage - 1;
+    };
+
+    nextButton.onclick= () => {
+        location.href = currentPage + 1;
+    };
+
     if (currentPage == 1 || currentPage < 0){
         previosButton.style.visibility = 'hidden';
     };

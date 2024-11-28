@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(express.json());
 
-async function getBooks(){
+async function getFirstsBooks(){
     let books = [];
     const result = await user.query('SELECT * FROM book LIMIT 8');
     result.rows.forEach((book) => {
@@ -29,10 +29,30 @@ async function getBooks(){
 
 };
 
+async function getBooks(){
+    let books = [];
+    const result = await user.query('SELECT * FROM book');
+    result.rows.forEach((book) => {
+        books.push(book);
+    });
+    return books
 
+};
+
+
+async function getPagBooks(page, limit) {
+    let books = [];
+    const limitValues = limit;
+    const offset = (page - 1) * limit;
+    const result = await user.query('SELECT * FROM book LIMIT $1 OFFSET $2', [limitValues, offset]);
+    result.rows.forEach((book) => {
+        books.push(book);
+    })
+    return books
+}
 
 app.get('/', async (req,res) => {
-    const books = await getBooks();
+    const books = await getFirstsBooks();
     res.render('index.ejs', {books: books})
 });
 
@@ -84,6 +104,15 @@ app.post('/add', async (req,res) => {
 app.get('/about', (req,res) => {
     res.render('about.ejs')
 });
+
+app.get('/books/:page', async (req,res) => {
+    console.log(req.params.page)
+    const page = req.params.page
+    const limit = 4
+    const books = await getPagBooks(page, limit);
+    console.log(books);
+    res.render('books.ejs', {books:books})
+})
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)

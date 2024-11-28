@@ -85,6 +85,28 @@ footer {
     font-weight: bold;
 }
 
+.search-input form {
+    display: flex;
+    align-items: center;
+    
+
+}
+
+.search-input form input::-webkit-search-cancel-button {
+    -webkit-appearance:none;
+}
+
+.search-input button {
+    background-color: inherit;
+    border: none;
+}
+
+
+
+.search-form__svg {
+    margin-left: -35px;
+}
+
 .books-label {
     display: flex;
     justify-content: center;
@@ -125,6 +147,17 @@ footer {
     flex-wrap: wrap;
     flex-direction: row;
     gap: 250px;
+}
+
+.book-all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.books-show-all {
+    margin: 2rem 0rem;
 }
 
 .add-book {

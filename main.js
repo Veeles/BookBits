@@ -74,7 +74,7 @@ function getTitles(books){
 app.get('/', async (req,res) => {
     const books = await getFirstsBooks();
     const titles = getTitles(books);
-    res.render('index.ejs', {books: books, titles:titles})
+    res.render('main.ejs', {books: books, titles:titles})
 });
 
 app.get('/add', (req,res) => {

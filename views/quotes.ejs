@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs') -%>
+
+<div class="quotes">
+    <% quotes.forEach((quote) => { %>
+        <div class="quote">
+            <div class="quote-content">
+                <h2>„</h2>
+                <h3><%= quote.quote %></h3>
+                <h2>"</h2>
+            </div>
+            <div class="quote-author">
+                <p><%= quote.author %></p>
+            </div>
+        </div>
+        
+    <% }); %>
+   <button>More</button>
+</div>
+
+<script>
+    const buttonMore = document.querySelector('.quotes button');
+    buttonMore.onclick = () => {
+        location.href = '/quotes'
+    }
+</script>
+<%- include('partials/footer.ejs') -%>

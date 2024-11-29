@@ -169,16 +169,16 @@ app.post('/book/update/:id', async (req,res) => {
     };
 });
 
-// app.get('/quotes', async (req,res) => {
-//     try {
-//         const result = await fetch('https://quoteslate.vercel.app/api/quotes/random?count=5');
-//         const quotes = await result.text();
-//         console.log(quotes)
-//     } catch (err) {
-//         console.log(err);
-//         res.redirect('/');
-//     }
-// });
+app.get('/quotes', async (req,res) => {
+    try {
+        const result = await fetch('https://quoteslate.vercel.app/api/quotes/random?count=20&maxLength=70');
+        const quotes = await result.json();
+        res.render('quotes.ejs', {quotes:quotes});
+    } catch (err) {
+        console.log(err);
+        res.redirect('/');
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)

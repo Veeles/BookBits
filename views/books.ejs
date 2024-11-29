@@ -9,7 +9,7 @@
             <% books.forEach(book => { %>
                 
             
-            <div class="book-photo">
+            <div class="book-photo" data-url="book/<%= book.id %>">
                 <img src="<%= book.image %>">
                 <p><%= book.author %></p>
                 <p><%= book.title %></p>
@@ -52,6 +52,15 @@
     if (currentPage == topPage || currentPage > topPage){
         nextButton.style.visibility = 'hidden';
     };
+
+    document.querySelectorAll('.book-photo').forEach((book) => {
+        book.addEventListener('click', () => {
+            const url = book.getAttribute('data-url');
+            if(url){
+                window.location.href = `/${url}`
+            }
+        });
+    });
 </script>
 
 <%- include('partials/footer') -%>

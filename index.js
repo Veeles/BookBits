@@ -153,9 +153,7 @@ app.get('/book/:id', async (req,res) => {
 
 app.get('/book/edit/:id', async (req, res) => {
     const id = req.params.id;
-    console.log(id)
     const book = await getBookDetailsById(id);
-    console.log(book[0])
     res.render('edit.ejs', {book:book[0]});
 });
 
@@ -163,8 +161,6 @@ app.post('/book/update/:id', async (req,res) => {
     try {
         const id = req.params.id;
         const contentUpdate = req.body['contentUpdate'];
-        console.log(id)
-        console.log(req.body);
         const result = await user.query('UPDATE book SET content = $1 WHERE id = $2', [contentUpdate, id]);
         res.redirect(`/book/${id}`);
     } catch (err) {
@@ -172,6 +168,17 @@ app.post('/book/update/:id', async (req,res) => {
         res.redirect('/');
     };
 });
+
+// app.get('/quotes', async (req,res) => {
+//     try {
+//         const result = await fetch('https://quoteslate.vercel.app/api/quotes/random?count=5');
+//         const quotes = await result.text();
+//         console.log(quotes)
+//     } catch (err) {
+//         console.log(err);
+//         res.redirect('/');
+//     }
+// });
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)

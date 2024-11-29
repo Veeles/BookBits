@@ -19,6 +19,12 @@
            <%- book.content %>
         </div>
     </div>
-
 </div>
+<div class="edit-button">
+    <form action="/book/edit/<%= book.id %>" method="get">
+        <input type="submit" id="<%= book.id %>" value="Edit Content" name="BookId">
+    </form>
+</div>
+
+
 <%- include('partials/footer.ejs') -%>

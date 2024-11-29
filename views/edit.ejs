@@ -1,0 +1,13 @@
+<%- include('partials/header.ejs') -%>
+<div class="edit">
+    <h2>Edit Content</h2>
+    <div class="edit-form">
+        <form action="/book/update/<%= book.id %>", method="post">
+            <label for="content-update">Book Title: <%= book.title %></label>
+            <!-- <input type="text" id="content-update" name="contentUpdate" value="<%= book.content %>"> -->
+            <textarea id="content-update" name="contentUpdate"><%= book.content %></textarea>
+            <input type="submit" value="Edit Book Content">
+        </form>
+    </div>
+</div>
+<%- include('partials/footer.ejs') -%>

@@ -392,3 +392,36 @@ a {
     font-size: 1rem;
 
 }
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-book__details {
+    margin: 10rem 5rem;
+}
+
+.content-title h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.content-author p {
+    text-align: center;
+}
+
+.book-image img {
+    height: 500px;
+    width: 350px;
+    box-shadow: 0px 1px 6px 1px black;
+
+}
+
+.content-details {
+    margin-top: 5rem;
+    width: 50%;
+    font-size: 1rem;
+    line-height: 1.2;
+}

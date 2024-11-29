@@ -145,8 +145,7 @@ app.get('/book/:id', async (req,res) => {
     try{
         const id = req.params.id;
         const book = await getBookDetailsById(id)
-        console.log(book)
-        res.render('book.ejs', {book:book});
+        res.render('book.ejs', {book:book[0]});
     } catch (err){
         console.log(err);
     };
